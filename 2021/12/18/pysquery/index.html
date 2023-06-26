@@ -132,8 +132,8 @@
 <p>📢 非常感谢你的阅读，不对的地方欢迎指正 😘😘</p>
 <p>📢 愿你忠于自己，热爱生活，生活中不仅要有技术，更有诗和远方。</p>
 <p>📢本文内容参考   崔庆才&lt;网络爬虫开发实战第二版&gt;  </p>
-<h2 id="1-如何安装biaoq"><a href="#1-如何安装biaoq" class="headerlink" title="1.如何安装biaoq"></a>1.如何安装biaoq</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyquery</span><br></pre></td></tr></table></figure>
-
+<h2 id="1-如何安装biaoq"><a href="#1-如何安装biaoq" class="headerlink" title="1.如何安装biaoq"></a>1.如何安装biaoq</h2><pre><code class="python">pip install pyquery
+</code></pre>
 <p>更加详细的安装可以参考<strong>崔庆才</strong>大佬，<a target="_blank" rel="noopener" href="https://cuiqingcai.com/5186.html">https://cuiqingcai.com/5186.html</a></p>
 <h2 id="2-为何选择使用pyquery"><a href="#2-为何选择使用pyquery" class="headerlink" title="2. 为何选择使用pyquery"></a>2. 为何选择使用pyquery</h2><p>我们知道目前主流的爬虫解析库：</p>
 <ul>
@@ -151,11 +151,40 @@
         </sapn>
       
 
-<h2 id="不信？下面来用一个实例感受一下"><a href="#不信？下面来用一个实例感受一下" class="headerlink" title="不信？下面来用一个实例感受一下"></a>不信？下面来用一个实例感受一下</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 引入对象 取别名</span></span><br><span class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pq</span><br><span class="line"></span><br><span class="line">html = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&lt;div&gt;</span></span><br><span class="line"><span class="string">    &lt;ul&gt;</span></span><br><span class="line"><span class="string">         &lt;li class=&quot;item-0&quot;&gt;first item&lt;/li&gt;</span></span><br><span class="line"><span class="string">         &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;second item&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">         &lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">         &lt;li class=&quot;item-1 active&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">         &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth item&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">     &lt;/ul&gt;</span></span><br><span class="line"><span class="string"> &lt;/div&gt;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化</span></span><br><span class="line">doc = pq(html)</span><br><span class="line"><span class="comment"># 传入li节点 这样就可以选取所有li节点了</span></span><br><span class="line"><span class="built_in">print</span>(doc(<span class="string">&#x27;li&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">out:     &lt;li <span class="keyword">class</span>=<span class="string">&quot;item-0&quot;</span>&gt;first item&lt;/li&gt;</span><br><span class="line">         &lt;li <span class="keyword">class</span>=<span class="string">&quot;item-1&quot;</span>&gt;&lt;a href=<span class="string">&quot;link2.html&quot;</span>&gt;second item&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">         &lt;li <span class="keyword">class</span>=<span class="string">&quot;item-0 active&quot;</span>&gt;&lt;a href=<span class="string">&quot;link3.html&quot;</span>&gt;&lt;span <span class="keyword">class</span>=<span class="string">&quot;bold&quot;</span>&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">         &lt;li <span class="keyword">class</span>=<span class="string">&quot;item-1 active&quot;</span>&gt;&lt;a href=<span class="string">&quot;link4.html&quot;</span>&gt;fourth item&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">         &lt;li <span class="keyword">class</span>=<span class="string">&quot;item-0&quot;</span>&gt;&lt;a href=<span class="string">&quot;link5.html&quot;</span>&gt;fifth item&lt;/a&gt;&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="不信？下面来用一个实例感受一下"><a href="#不信？下面来用一个实例感受一下" class="headerlink" title="不信？下面来用一个实例感受一下"></a>不信？下面来用一个实例感受一下</h2><pre><code class="python"># 引入对象 取别名
+from pyquery import PyQuery as pq
 
+html = &#39;&#39;&#39;
+&lt;div&gt;
+    &lt;ul&gt;
+         &lt;li class=&quot;item-0&quot;&gt;first item&lt;/li&gt;
+         &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;second item&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;item-1 active&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+     &lt;/ul&gt;
+ &lt;/div&gt;
+&#39;&#39;&#39;
+
+# 初始化
+doc = pq(html)
+# 传入li节点 这样就可以选取所有li节点了
+print(doc(&#39;li&#39;))
+
+
+out:     &lt;li class=&quot;item-0&quot;&gt;first item&lt;/li&gt;
+         &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;second item&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;item-1 active&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+</code></pre>
 <h2 id="URL初始化"><a href="#URL初始化" class="headerlink" title="URL初始化"></a>URL初始化</h2><p>初始化的参数除了可以用字符串还可以使用url的方式传递，只需要指定Pyquery的<strong>对象参数为url</strong>即可</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">doc = pq(url=<span class="string">&#x27;https://cuiqingcai.com&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(doc(<span class="string">&#x27;title&#x27;</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">out:/ &lt;title&gt;静觅丨崔庆才的个人站点&lt;\title&gt;</span><br></pre></td></tr></table></figure>
+<pre><code class="python">doc = pq(url=&#39;https://cuiqingcai.com&#39;)
+print(doc(&#39;title&#39;))
 
+
+out:/ &lt;title&gt;静觅丨崔庆才的个人站点&lt;\title&gt;
+</code></pre>
 <p>这段代码是什么意思呢？首先Pyquery对象会去请求这个url，然后得到<strong>URL</strong>返回的内容初始化给pq类</p>
 
         <span class="lazyload-img-span">
@@ -164,38 +193,91 @@
         </sapn>
       
 
-<h2 id="文件初始化"><a href="#文件初始化" class="headerlink" title="文件初始化"></a>文件初始化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">doc = pq(filename=<span class="string">&#x27;demo.html&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(doc(<span class="string">&#x27;li&#x27;</span>))</span><br></pre></td></tr></table></figure>
-
+<h2 id="文件初始化"><a href="#文件初始化" class="headerlink" title="文件初始化"></a>文件初始化</h2><pre><code class="python">doc = pq(filename=&#39;demo.html&#39;)
+print(doc(&#39;li&#39;))
+</code></pre>
 <p>这样它会先读取本地的文件内容，然后将文件内容以字符串的形式传递给 pyquery 类来初始化。</p>
-<h2 id="基本CSS选择器"><a href="#基本CSS选择器" class="headerlink" title="基本CSS选择器"></a>基本CSS选择器</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">html = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&lt;div id=&quot;container&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;ul class=&quot;list&quot;&gt;</span></span><br><span class="line"><span class="string">         &lt;li class=&quot;item-0&quot;&gt;first item&lt;/li&gt;</span></span><br><span class="line"><span class="string">         &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;second item&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">         &lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">         &lt;li class=&quot;item-1 active&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">         &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth item&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">     &lt;/ul&gt;</span></span><br><span class="line"><span class="string"> &lt;/div&gt;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pq</span><br><span class="line">doc = pq(html)</span><br><span class="line"><span class="built_in">print</span>(doc(<span class="string">&#x27;#container .list li&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(doc(<span class="string">&#x27;#container .list li&#x27;</span>)))</span><br><span class="line"></span><br><span class="line">out: 	 &lt;li <span class="keyword">class</span>=<span class="string">&quot;item-0&quot;</span>&gt;first item&lt;/li&gt;</span><br><span class="line">         &lt;li <span class="keyword">class</span>=<span class="string">&quot;item-1&quot;</span>&gt;&lt;a href=<span class="string">&quot;link2.html&quot;</span>&gt;second item&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">         &lt;li <span class="keyword">class</span>=<span class="string">&quot;item-0 active&quot;</span>&gt;&lt;a href=<span class="string">&quot;link3.html&quot;</span>&gt;&lt;span <span class="keyword">class</span>=<span class="string">&quot;bold&quot;</span>&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">         &lt;li <span class="keyword">class</span>=<span class="string">&quot;item-1 active&quot;</span>&gt;&lt;a href=<span class="string">&quot;link4.html&quot;</span>&gt;fourth item&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">         &lt;li <span class="keyword">class</span>=<span class="string">&quot;item-0&quot;</span>&gt;&lt;a href=<span class="string">&quot;link5.html&quot;</span>&gt;fifth item&lt;/a&gt;&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="基本CSS选择器"><a href="#基本CSS选择器" class="headerlink" title="基本CSS选择器"></a>基本CSS选择器</h2><pre><code class="python">html = &#39;&#39;&#39;
+&lt;div id=&quot;container&quot;&gt;
+    &lt;ul class=&quot;list&quot;&gt;
+         &lt;li class=&quot;item-0&quot;&gt;first item&lt;/li&gt;
+         &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;second item&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;item-1 active&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+     &lt;/ul&gt;
+ &lt;/div&gt;
+&#39;&#39;&#39;
+from pyquery import PyQuery as pq
+doc = pq(html)
+print(doc(&#39;#container .list li&#39;))
+print(type(doc(&#39;#container .list li&#39;)))
 
+out: 	 &lt;li class=&quot;item-0&quot;&gt;first item&lt;/li&gt;
+         &lt;li class=&quot;item-1&quot;&gt;&lt;a href=&quot;link2.html&quot;&gt;second item&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;item-0 active&quot;&gt;&lt;a href=&quot;link3.html&quot;&gt;&lt;span class=&quot;bold&quot;&gt;third item&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;item-1 active&quot;&gt;&lt;a href=&quot;link4.html&quot;&gt;fourth item&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;item-0&quot;&gt;&lt;a href=&quot;link5.html&quot;&gt;fifth item&lt;/a&gt;&lt;/li&gt;
+</code></pre>
 <p>这里我们初始化后，给doc传入了一个CSS选择器#container .list li <strong>意思是先选取id为container的节点，再选取其内部class为list的所有li节点</strong></p>
 <p>下面，我们直接遍历这些节点，然后调用 text 方法，就可以获取节点的文本内容</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">doc = pq(html)</span><br><span class="line">lis = doc(<span class="string">&#x27;#container .list li&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> lis.items():</span><br><span class="line">    <span class="comment"># 提取li节点的所有文本内容</span></span><br><span class="line">    <span class="built_in">print</span>(item.text())</span><br></pre></td></tr></table></figure>
+<pre><code class="python">doc = pq(html)
+lis = doc(&#39;#container .list li&#39;)
 
-<h2 id="查找子节点"><a href="#查找子节点" class="headerlink" title="查找子节点"></a>查找子节点</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">doc = pq(html)</span><br><span class="line"><span class="comment"># 选取class为list的节点</span></span><br><span class="line">items = doc(<span class="string">&#x27;.list&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(items)</span><br><span class="line">lis = items.find(<span class="string">&#x27;li&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(lis))</span><br><span class="line"><span class="built_in">print</span>(lis)</span><br></pre></td></tr></table></figure>
+for item in lis.items():
+    # 提取li节点的所有文本内容
+    print(item.text())
+</code></pre>
+<h2 id="查找子节点"><a href="#查找子节点" class="headerlink" title="查找子节点"></a>查找子节点</h2><pre><code class="python">doc = pq(html)
+# 选取class为list的节点
+items = doc(&#39;.list&#39;)
 
+print(items)
+lis = items.find(&#39;li&#39;)
+print(type(lis))
+print(lis)
+</code></pre>
 <p>find 的查找范围是节点的所有子孙节点,而如果我们只想查找子节点，那可以用 <strong>children</strong> 方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lis = items.children()</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(lis))</span><br><span class="line"><span class="built_in">print</span>(lis)</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">lis = items.children()
+print(type(lis))
+print(lis)
+</code></pre>
 <p>如果要筛选所有<strong>子节点</strong>中符合条件的节点，比如想筛选出<strong>子节点中 class 为 active 的节点</strong>，可以向 children 方法传入 CSS 选择器 .active，代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">doc = pq(html)</span><br><span class="line">items = doc(<span class="string">&#x27;.list&#x27;</span>)</span><br><span class="line">a = items.children(<span class="string">&#x27;.item-1&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">doc = pq(html)
+items = doc(&#39;.list&#39;)
+a = items.children(&#39;.item-1&#39;)
+print(a)
+</code></pre>
 <p>我们看到输出的结果已经做了筛选，留下了 class 为 .item-1 的节点。</p>
 <h2 id="父节点"><a href="#父节点" class="headerlink" title="父节点"></a>父节点</h2><p> items.parent()方法 <strong>返回所有的 父辈节点</strong> 如果需要筛选 在其中传入CSS选择器</p>
 <p>如果想返回祖先节点 <strong>ites.parents()即可</strong>*</p>
-<h2 id="兄弟节点"><a href="#兄弟节点" class="headerlink" title="兄弟节点"></a>兄弟节点</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">doc = pq(html)</span><br><span class="line"><span class="comment"># 这里需要注意 这两种是截然不同的意义</span></span><br><span class="line"><span class="comment">#在这个例子中我们首先选择 class 为 list 的节点，内部 class 为 item-0 和 active 的节点，也就是第 3 个 li 节点。很明显，它的兄弟节点有 4 个，那就是第 1、2、4、5 个 li 节点。</span></span><br><span class="line">li = doc(<span class="string">&#x27;.list .item-0.active&#x27;</span>)</span><br><span class="line"><span class="comment"># 这个写法表明首先取class为list的节点,内部class为item-0的节点,之后再选取其内部为active的节点</span></span><br><span class="line">li = doc(<span class="string">&#x27;.list .item-0 .active&#x27;</span>)</span><br><span class="line"><span class="comment"># 对兄弟节点再做筛选</span></span><br><span class="line"><span class="built_in">print</span>(li.siblings(<span class="string">&#x27;.active&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(li.siblings())</span><br></pre></td></tr></table></figure>
-
+<h2 id="兄弟节点"><a href="#兄弟节点" class="headerlink" title="兄弟节点"></a>兄弟节点</h2><pre><code class="python">doc = pq(html)
+# 这里需要注意 这两种是截然不同的意义
+#在这个例子中我们首先选择 class 为 list 的节点，内部 class 为 item-0 和 active 的节点，也就是第 3 个 li 节点。很明显，它的兄弟节点有 4 个，那就是第 1、2、4、5 个 li 节点。
+li = doc(&#39;.list .item-0.active&#39;)
+# 这个写法表明首先取class为list的节点,内部class为item-0的节点,之后再选取其内部为active的节点
+li = doc(&#39;.list .item-0 .active&#39;)
+# 对兄弟节点再做筛选
+print(li.siblings(&#39;.active&#39;))
+print(li.siblings())
+</code></pre>
 <h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><p>pyquery 的选择结果既可能是多个节点，也可能是单个节点，类型都是 pyquery 类型，并没有返回列表。</p>
 <p>对于单个节点来说，可以直接打印输出，也可以直接转成字符串</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pq</span><br><span class="line">doc = pq(html)</span><br><span class="line">li = doc(<span class="string">&#x27;.item-0.active&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(li)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">str</span>(li))</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">from pyquery import PyQuery as pq
+doc = pq(html)
+li = doc(&#39;.item-0.active&#39;)
+print(li)
+print(str(li))
+</code></pre>
 <p>对于有多个节点的结果，我们就需要用遍历来获取了。例如，如果要把每一个 li 节点进行遍历，需要调用 items 方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lis = doc(<span class="string">&#x27;li&#x27;</span>).items()</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">lis = doc(&#39;li&#39;).items()
+</code></pre>
 <p>调用 items 方法后，会得到一个<strong>生成器</strong>，遍历一下，就可以逐个得到 <strong>li 节点对象了</strong>,每个对象非常灵活，可以继续使用如上的方法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">doc = pq(html)</span><br><span class="line">lis = doc(<span class="string">&quot;li&quot;</span>).items()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> lis:</span><br><span class="line">    <span class="built_in">print</span>(i.text())</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">doc = pq(html)
+lis = doc(&quot;li&quot;).items()
+for i in lis:
+    print(i.text())
+</code></pre>
 <h2 id="获取信息"><a href="#获取信息" class="headerlink" title="获取信息"></a>获取信息</h2><ul>
 <li><p>获取属性</p>
 </li>
@@ -220,27 +302,49 @@ print(a.attr(&#39;href&#39;))
 
 
 # link3.html
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  当返回结果包含多个节点时，调用 attr 方法，只会得到第 1 个节点的属性。</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">- 获取文本</span><br><span class="line"></span><br><span class="line">  很简单</span><br><span class="line"></span><br><span class="line">  ```python</span><br><span class="line">  print(a.text())</span><br></pre></td></tr></table></figure>
-
-但如果你想要获取这个节点内部的 HTML 文本，就要用 html 方法了：
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(a.html())</span><br></pre></td></tr></table></figure>
-
-text 方法不需要遍历就可以获取，它将所有节点取文本之后合并成一个字符串。
-
-html 需要遍历获取 不然只能返回一个
 </code></pre>
+<p>当返回结果包含多个节点时，调用 attr 方法，只会得到第 1 个节点的属性。</p>
+</li>
+<li><p>获取文本</p>
+<p>很简单</p>
+<pre><code class="python">print(a.text())
+</code></pre>
+<p>但如果你想要获取这个节点内部的 HTML 文本，就要用 html 方法了：</p>
+<pre><code>print(a.html())
+</code></pre>
+<p>text 方法不需要遍历就可以获取，它将所有节点取文本之后合并成一个字符串。</p>
+<p>html 需要遍历获取 不然只能返回一个</p>
 </li>
 </ul>
 <h2 id="remove"><a href="#remove" class="headerlink" title="remove"></a>remove</h2><p>remove 方法就是移除</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">html = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&lt;div class=&quot;wrap&quot;&gt;</span></span><br><span class="line"><span class="string">    Hello, World</span></span><br><span class="line"><span class="string">    &lt;p&gt;This is a paragraph.&lt;/p&gt;</span></span><br><span class="line"><span class="string"> &lt;/div&gt;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pq</span><br><span class="line">doc = pq(html)</span><br><span class="line">wrap = doc(<span class="string">&#x27;.wrap&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(wrap.text())</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">html = &#39;&#39;&#39;
+&lt;div class=&quot;wrap&quot;&gt;
+    Hello, World
+    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+ &lt;/div&gt;
+&#39;&#39;&#39;
+from pyquery import PyQuery as pq
+doc = pq(html)
+wrap = doc(&#39;.wrap&#39;)
+print(wrap.text())
+</code></pre>
 <p>我们如果此时只想要Hello world怎么办，直接使用text()全部提取了</p>
 <p>这时 remove 方法就可以派上用场了</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wrap.remove(<span class="string">&#x27;p&#x27;</span>)  <span class="comment"># 选中p节点 remove移除即可</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="伪类选择器"><a href="#伪类选择器" class="headerlink" title="伪类选择器"></a>伪类选择器</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">li = doc(<span class="string">&#x27;li:first-child&#x27;</span>)  <span class="comment"># 第一个</span></span><br><span class="line"><span class="built_in">print</span>(li)</span><br><span class="line">li = doc(<span class="string">&#x27;li:last-child&#x27;</span>)  <span class="comment">#最后一个</span></span><br><span class="line"><span class="built_in">print</span>(li)</span><br><span class="line">li = doc(<span class="string">&#x27;li:nth-child(2)&#x27;</span>)  <span class="comment"># 第二个之后</span></span><br><span class="line"><span class="built_in">print</span>(li)</span><br><span class="line">li = doc(<span class="string">&#x27;li:gt(2)&#x27;</span>)  <span class="comment"># 第三个之后</span></span><br><span class="line"><span class="built_in">print</span>(li)</span><br><span class="line">li = doc(<span class="string">&#x27;li:nth-child(2n)&#x27;</span>) <span class="comment"># 偶数</span></span><br><span class="line"><span class="built_in">print</span>(li)</span><br><span class="line">li = doc(<span class="string">&#x27;li:contains(second)&#x27;</span>) <span class="comment">#包含文本second的节点</span></span><br><span class="line"><span class="built_in">print</span>(li)</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">wrap.remove(&#39;p&#39;)  # 选中p节点 remove移除即可
+</code></pre>
+<h2 id="伪类选择器"><a href="#伪类选择器" class="headerlink" title="伪类选择器"></a>伪类选择器</h2><pre><code class="python">li = doc(&#39;li:first-child&#39;)  # 第一个
+print(li)
+li = doc(&#39;li:last-child&#39;)  #最后一个
+print(li)
+li = doc(&#39;li:nth-child(2)&#39;)  # 第二个之后
+print(li)
+li = doc(&#39;li:gt(2)&#39;)  # 第三个之后
+print(li)
+li = doc(&#39;li:nth-child(2n)&#39;) # 偶数
+print(li)
+li = doc(&#39;li:contains(second)&#39;) #包含文本second的节点
+print(li)
+</code></pre>
 <h2 id="THE-LAST"><a href="#THE-LAST" class="headerlink" title="THE LAST"></a>THE LAST</h2><p>关于 CSS 选择器的更多用法，可以参考：<a target="_blank" rel="noopener" href="http://pyquery.readthedocs.io/en/latest/api.html%E3%80%82">http://pyquery.readthedocs.io/en/latest/api.html。</a></p>
 <p>关于pyquery更多说明:<a target="_blank" rel="noopener" href="http://pyquery.readthedocs.io/">http://pyquery.readthedocs.io</a></p>
 <p>怎么样 是不是感觉手里的xpath瞬间他就不香了</p>

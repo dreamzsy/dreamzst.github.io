@@ -126,29 +126,55 @@
 <p><strong>输出</strong></p>
 <p>Sn的值</p>
 <p><strong>样例输入复制</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5</span><br></pre></td></tr></table></figure>
-
+<pre><code>5
+</code></pre>
 <p><strong>样例输出复制</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">153</span><br></pre></td></tr></table></figure>
-
+<pre><code>153
+</code></pre>
 <p><strong>思路分析：</strong></p>
 <p>题目要求需要求阶乘的和，我们的初步想法是定义一个<strong>求阶乘的递归函数</strong>，再定义一个<strong>主函数</strong>，通过<strong>遍历</strong>，1-n将数字传入fac中，之后 加到sum里。</p>
 <p><strong>注意事项：</strong></p>
 <p>1.采取自定函数求阶乘。用递归法。需注意递归法的尽头。（在本题中，fac函数的if语句作递归法的尽头，不可省略。）</p>
 <p>2.要注意最后结果的数值范围，避免溢出发生错误。</p>
 <p>阶乘很容出现<strong>数值溢出</strong>的问题，所以我们要<strong>扩大数值的存储范围</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">类型名称      字节数  取值范围</span><br><span class="line">signed` `char`      `1    -128～+127</span><br><span class="line">short` `int`       `2    -32768～+32767</span><br><span class="line">int`          `4    -2147483648～+2147483647</span><br><span class="line">long` `int`       `4    -2147483648～+2141483647</span><br><span class="line">long` `long` `int`     `8    -9223372036854775808～+9223372036854775807</span><br></pre></td></tr></table></figure>
+<pre><code>类型名称      字节数  取值范围
+signed` `char`      `1    -128～+127
+short` `int`       `2    -32768～+32767
+int`          `4    -2147483648～+2147483647
+long` `int`       `4    -2147483648～+2141483647
+long` `long` `int`     `8    -9223372036854775808～+9223372036854775807
+</code></pre>
+<pre><code>//long int   的简写是   long     占位符是：%ld   
+//long long int的简写是   long long   占位符是：%lld
+</code></pre>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a><strong>代码如下：</strong></h2><pre><code class="c++">#include &lt;iostream&gt;
+using namespace std;
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//long int   的简写是   long     占位符是：%ld   </span><br><span class="line">//long long int的简写是   long long   占位符是：%lld</span><br></pre></td></tr></table></figure>
+//设计的递归函数 返回阶乘值
+long int fac(int n)&#123;        //long int 避免溢出
+    if(n==0)&#123;
+        //递归法到尽头 返回1
+        return 1;
+    &#125;
+    return  (fac(n-1)*n);
+&#125;
 
+//主函数
 
-
-
-
-<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a><strong>代码如下：</strong></h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">//设计的递归函数 返回阶乘值</span></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">int</span> <span class="title">fac</span><span class="params">(<span class="type">int</span> n)</span></span>&#123;        <span class="comment">//long int 避免溢出</span></span><br><span class="line">	<span class="keyword">if</span>(n==<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="comment">//递归法到尽头 返回1</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>  (<span class="built_in">fac</span>(n<span class="number">-1</span>)*n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//主函数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//思路:先设计一个函数求出每个阶乘</span></span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	<span class="type">long</span> <span class="type">int</span> s=<span class="number">0</span>;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n; i++)&#123;</span><br><span class="line">		s += <span class="built_in">fac</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; s &lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 时间复杂度O(N)</span></span><br><span class="line"><span class="comment">//空间耗费多 能不用递归就不用递归</span></span><br></pre></td></tr></table></figure>
-
-
-
+int main()&#123;
+    //思路:先设计一个函数求出每个阶乘
+    int n;
+    long int s=0;
+    cin &gt;&gt; n;
+    for(int i=1; i&lt;=n; i++)&#123;
+        s += fac(i);
+    &#125;
+    cout &lt;&lt; s &lt;&lt;endl;
+    return 0;
+&#125;
+// 时间复杂度O(N)
+//空间耗费多 能不用递归就不用递归
+</code></pre>
 <p><strong>思路二（首选）：</strong></p>
 <p>我们看第第二次循环的时候也就是2!,此时等于前一个数的阶乘*当前数</p>
 <p> 第三次循环的时候，3!&#x3D; 2! * 3</p>
@@ -159,8 +185,20 @@
 <p>我们可以退出 </p>
 <p>t *&#x3D;i;</p>
 <p>s +&#x3D;t</p>
-<h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> <span class="type">int</span> sum = <span class="number">0</span>, t = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        t *= i;</span><br><span class="line">        sum += t;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>, sum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><pre><code class="c++">#include &lt;stdio.h&gt;
+int main()
+&#123;
+    int n;
+    long long int sum = 0, t = 1;
+    scanf(&quot;%d&quot;, &amp;n);
+    for (int i = 1; i &lt;= n; i++)
+    &#123;
+        t *= i;
+        sum += t;
+    &#125;
+    printf(&quot;%lld&quot;, sum);
+&#125;
+</code></pre>
 <p>推荐这个算法，时间复杂度O(n)，但是空间占用小。</p>
 
         <!-- 分类文章 -->

@@ -176,9 +176,9 @@
       
 
 <p>思路：待插入结点的指针指向原指针的目标，把原来的指针指向待插入的结点，就可以了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s.next = p.next;</span><br><span class="line">p.next = s;</span><br></pre></td></tr></table></figure>
-
-
+<pre><code class="java">s.next = p.next;
+p.next = s;
+</code></pre>
 </li>
 <li><h3 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h3><p>接下来我们看一下删除操作。还是这个存储了同学们考试成绩的链表，假设里面有一个成绩的样本是被误操作放进来的，我们需要把这个样本删除。</p>
 <p>
@@ -188,7 +188,8 @@
         </sapn>
       </p>
 <p>思路：太简单了，不解释 ，如果待删除的结点为b，只需要把指向b的指针指向c即可</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p.next = p.next.next</span><br></pre></td></tr></table></figure>
+<pre><code class="java">p.next = p.next.next
+</code></pre>
 </li>
 <li><h3 id="查找操作"><a href="#查找操作" class="headerlink" title="查找操作"></a><strong>查找操作</strong></h3><p><strong>第一种情况是按照位置序号来查找。</strong></p>
 <p>假设一个链表中，按照学号存储了 10 个同学的考试成绩。现在要查找出学号等于 5 的同学，他的考试成绩是多少，该怎么办呢？</p>
@@ -217,19 +218,190 @@
 <li><p>如果是数组的翻转，这会非常容易。原因在于，数组在连续的空间进行存储，可以直接求解出数组的长度。而且，数组可以通过索引值去查找元素，然后对相应的数据进行交换操作而完成翻转。</p>
 </li>
 <li><p>但对于某个单向链表，它的指针结构造成了它的数据通路有去无回，一旦修改了某个指针，后面的数据就会造成失联的状态。为了解决这个问题，我们需要构造三个指针 prev、curr 和 next，对当前结点、以及它之前和之后的结点进行缓存，再完成翻转动作。具体如下图所示：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(curr)&#123;</span><br><span class="line">    next = curr.next;</span><br><span class="line">    curr.next = prev；</span><br><span class="line">    prev = curr;</span><br><span class="line">    curr = next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<pre><code class="java">while(curr)&#123;
+    next = curr.next;
+    curr.next = prev；
+    prev = curr;
+    curr = next;
+&#125;
+</code></pre>
+</li>
 </ul>
 <p><strong>例 2，给定一个奇数个元素的链表，查找出这个链表中间位置的结点的数值。</strong></p>
 <p>这个问题也是利用了链表的长度无法直接获取的不足做文章，解决办法如下：</p>
 <p>一个暴力的办法是，先通过一次遍历去计算链表的长度，这样我们就知道了链表中间位置是第几个。接着再通过一次遍历去查找这个位置的数值。</p>
 <p>除此之外，还有一个巧妙的办法，就是利用快慢指针进行处理。其中快指针每次循环向后跳转两次，而慢指针每次向后跳转一次。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(fast &amp;&amp; fast.next &amp;&amp; fast.next.next)&#123;</span><br><span class="line">    fast = fast.next.next;</span><br><span class="line">    slow = slow.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">while(fast &amp;&amp; fast.next &amp;&amp; fast.next.next)&#123;
+    fast = fast.next.next;
+    slow = slow.next;
+&#125;
+</code></pre>
 <h1 id="THE-LAST"><a href="#THE-LAST" class="headerlink" title="THE LAST"></a>THE LAST</h1><p>经过我们的分析，链表在<strong>增、删</strong>方面比较容易实现，可以在 <strong>O(1)</strong> 的时间复杂度内完成。但对于<strong>查找</strong>，不管是按照位置的查找还是按照数值条件的查找，都需要对全部数据进行<strong>遍历</strong>。</p>
 <p>线性表的价值在于，它对数据的存储方式是<strong>按照顺序的存储</strong>。当数据的元素<strong>个数不确定</strong>，且需要经常进行<strong>数据的新增和删除时</strong>，那么链表会比较合适。链表的<strong>翻转</strong>、<strong>快慢指针</strong>的方法，是必须掌握的内容。(ps:现有水平理解不了)</p>
 <p><strong>简单的代码实操</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.algorithm;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Linked</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">SingleLinkedListDemo</span> <span class="variable">singleLinkedListDemo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SingleLinkedListDemo</span>();</span><br><span class="line">        <span class="comment">//添加几个节点</span></span><br><span class="line">        <span class="type">HeroNode</span> <span class="variable">node1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HeroNode</span>(<span class="number">1</span>, <span class="string">&quot;桥本有菜&quot;</span>);</span><br><span class="line">        <span class="type">HeroNode</span> <span class="variable">node2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HeroNode</span>(<span class="number">2</span>, <span class="string">&quot;波多野结衣&quot;</span>);</span><br><span class="line">        <span class="type">HeroNode</span> <span class="variable">node3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HeroNode</span>(<span class="number">3</span>, <span class="string">&quot;三上悠亚&quot;</span>);</span><br><span class="line">        <span class="type">HeroNode</span> <span class="variable">node4</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HeroNode</span>(<span class="number">4</span>, <span class="string">&quot;吕布&quot;</span>);</span><br><span class="line">        <span class="type">HeroNode</span> <span class="variable">node5</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HeroNode</span>(<span class="number">5</span>, <span class="string">&quot;凋残&quot;</span>);</span><br><span class="line">        <span class="comment">//添加节点</span></span><br><span class="line">        singleLinkedListDemo.addHeroNode(node1);</span><br><span class="line">        singleLinkedListDemo.addHeroNode(node2);</span><br><span class="line">        singleLinkedListDemo.addHeroNode(node3);</span><br><span class="line">        singleLinkedListDemo.addHeroNode(node4);</span><br><span class="line">        singleLinkedListDemo.addHeroNode(node5);</span><br><span class="line">        <span class="comment">//显示节点</span></span><br><span class="line">        singleLinkedListDemo.showList(singleLinkedListDemo.getHead());</span><br><span class="line">        System.out.println(<span class="string">&quot;我是分界线--------------&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//修改凋残为西施</span></span><br><span class="line">        singleLinkedListDemo.updateLinked(<span class="keyword">new</span> <span class="title class_">HeroNode</span>(<span class="number">5</span>,<span class="string">&quot;西施&quot;</span>));</span><br><span class="line">        singleLinkedListDemo.showList(singleLinkedListDemo.getHead());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SingleLinkedListDemo</span>&#123;</span><br><span class="line">    <span class="comment">//定义一个头节点</span></span><br><span class="line"><span class="comment">//    private HeroNode head = new HeroNode(0,&quot;&quot;);</span></span><br><span class="line">    <span class="comment">//先初始化一个头结点，头结点不能动，头结点不能变化，方便找到链表的头</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">HeroNode</span> <span class="variable">head</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HeroNode</span>(<span class="number">0</span>,<span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//我头节点是用来方便查找</span></span><br><span class="line">    <span class="comment">//有个方法获取头节点</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> HeroNode <span class="title function_">getHead</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> head;  <span class="comment">//返回头节点</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//添加节点</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addHeroNode</span><span class="params">(HeroNode heroNode)</span>&#123;</span><br><span class="line">        <span class="comment">//因为head节点是不能动的 因此我们需要有一个辅助节点temp 来遍历</span></span><br><span class="line">        <span class="type">HeroNode</span> <span class="variable">temp</span> <span class="operator">=</span> head;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">            <span class="comment">//添加数据是从链表最后添加 如何确定最后的位置，只能节点.next，这样遍历下去，直到值位Null</span></span><br><span class="line">            <span class="keyword">if</span>(temp.next == <span class="literal">null</span>)&#123; <span class="comment">//此时指向最后一个节点</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        temp.next = heroNode;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//查看链表</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">showList</span><span class="params">(HeroNode head)</span> &#123;<span class="comment">//传入头节点</span></span><br><span class="line"><span class="comment">//        判断列表是否为空</span></span><br><span class="line">        <span class="keyword">if</span>(head.next == <span class="literal">null</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;列表为空&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//因为头节点是不能动的 所以需要辅助遍历来遍历</span></span><br><span class="line">        <span class="type">HeroNode</span> <span class="variable">temp</span> <span class="operator">=</span> head.next;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(temp==<span class="literal">null</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(temp);</span><br><span class="line">            <span class="comment">//打印完之后temp后移</span></span><br><span class="line">            temp = temp.next;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//修改链表节点</span></span><br><span class="line"><span class="comment">//    1.刘备 ————&gt; 2.Zhangfei ——————&gt;3关羽</span></span><br><span class="line"><span class="comment">//    temp.id =</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">updateLinked</span><span class="params">(HeroNode heroNode)</span>&#123;</span><br><span class="line">        <span class="comment">//判断列表是否为空</span></span><br><span class="line">        <span class="keyword">if</span>(head.next==<span class="literal">null</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;链表为空&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//定义一个辅助节点</span></span><br><span class="line">        <span class="type">HeroNode</span> <span class="variable">temp</span> <span class="operator">=</span> head.next;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">            <span class="comment">//是否找到对应节点</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (temp.id==heroNode.id)&#123;</span><br><span class="line">                flag = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(temp.next==<span class="literal">null</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>; <span class="comment">//防止空指针异常</span></span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp.next;<span class="comment">//temp后移</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">            temp.name = heroNode.name;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;没有找到id为&quot;</span>+heroNode.id);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//删除节点</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">delLinkedList</span><span class="params">(<span class="type">int</span> id)</span>&#123;</span><br><span class="line">        <span class="type">HeroNode</span> <span class="variable">temp</span> <span class="operator">=</span> head; <span class="comment">//辅助</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="comment">//找到待删除节点的前一个节点</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(temp.next==<span class="literal">null</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>; <span class="comment">//已经到最后需要退出循环</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(temp.next.id ==id)&#123;</span><br><span class="line">                flag = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">            <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">                <span class="comment">//中间刚好空开一个.next</span></span><br><span class="line">                temp.next = temp.next.next;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;没有找到id为&quot;</span>+id);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//定义一个节点类 里面放数据</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">HeroNode</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> id;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> HeroNode next; <span class="comment">//指针 用来指向下一个节点</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">HeroNode</span><span class="params">(<span class="type">int</span> id, String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.id = id;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;HeroNode&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;id=&quot;</span> + id +</span><br><span class="line">                <span class="string">&quot;, name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;,&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹</span></span><br><span class="line"><span class="comment">/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹</span></span><br><span class="line"><span class="comment">/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹</span></span><br><span class="line"><span class="comment">/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹</span></span><br><span class="line"><span class="comment">/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹</span></span><br><span class="line"><span class="comment">/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹</span></span><br><span class="line"><span class="comment">/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹</span></span><br><span class="line"><span class="comment">/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹</span></span><br><span class="line"><span class="comment">/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹</span></span><br><span class="line"><span class="comment">/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹</span></span><br><span class="line"><span class="comment">/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹</span></span><br><span class="line"><span class="comment">/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹</span></span><br><span class="line"><span class="comment">/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹</span></span><br><span class="line"><span class="comment">/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹</span></span><br><span class="line"><span class="comment">/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹</span></span><br><span class="line"><span class="comment">/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹</span></span><br></pre></td></tr></table></figure>
+<pre><code class="java">package com.algorithm;
 
+public class Linked &#123;
+    public static void main(String[] args) &#123;
+        SingleLinkedListDemo singleLinkedListDemo = new SingleLinkedListDemo();
+        //添加几个节点
+        HeroNode node1 = new HeroNode(1, &quot;桥本有菜&quot;);
+        HeroNode node2 = new HeroNode(2, &quot;波多野结衣&quot;);
+        HeroNode node3 = new HeroNode(3, &quot;三上悠亚&quot;);
+        HeroNode node4 = new HeroNode(4, &quot;吕布&quot;);
+        HeroNode node5 = new HeroNode(5, &quot;凋残&quot;);
+        //添加节点
+        singleLinkedListDemo.addHeroNode(node1);
+        singleLinkedListDemo.addHeroNode(node2);
+        singleLinkedListDemo.addHeroNode(node3);
+        singleLinkedListDemo.addHeroNode(node4);
+        singleLinkedListDemo.addHeroNode(node5);
+        //显示节点
+        singleLinkedListDemo.showList(singleLinkedListDemo.getHead());
+        System.out.println(&quot;我是分界线--------------&quot;);
+
+        //修改凋残为西施
+        singleLinkedListDemo.updateLinked(new HeroNode(5,&quot;西施&quot;));
+        singleLinkedListDemo.showList(singleLinkedListDemo.getHead());
+
+
+    &#125;
+
+&#125;
+class SingleLinkedListDemo&#123;
+    //定义一个头节点
+//    private HeroNode head = new HeroNode(0,&quot;&quot;);
+    //先初始化一个头结点，头结点不能动，头结点不能变化，方便找到链表的头
+    private HeroNode head = new HeroNode(0,&quot;&quot;);
+
+    //我头节点是用来方便查找
+    //有个方法获取头节点
+
+    public HeroNode getHead()&#123;
+        return head;  //返回头节点
+    &#125;
+    //添加节点
+    public void addHeroNode(HeroNode heroNode)&#123;
+        //因为head节点是不能动的 因此我们需要有一个辅助节点temp 来遍历
+        HeroNode temp = head;
+        while (true)&#123;
+            //添加数据是从链表最后添加 如何确定最后的位置，只能节点.next，这样遍历下去，直到值位Null
+            if(temp.next == null)&#123; //此时指向最后一个节点
+                break;
+            &#125;
+            temp = temp.next;
+        &#125;
+        temp.next = heroNode;
+    &#125;
+    //查看链表
+    public void showList(HeroNode head) &#123;//传入头节点
+//        判断列表是否为空
+        if(head.next == null)&#123;
+            System.out.println(&quot;列表为空&quot;);
+        &#125;
+        //因为头节点是不能动的 所以需要辅助遍历来遍历
+        HeroNode temp = head.next;
+        while (true)&#123;
+            if(temp==null)&#123;
+                break;
+            &#125;
+            System.out.println(temp);
+            //打印完之后temp后移
+            temp = temp.next;
+
+            &#125;
+        &#125;
+
+        //修改链表节点
+//    1.刘备 ————&gt; 2.Zhangfei ——————&gt;3关羽
+//    temp.id =
+    public void updateLinked(HeroNode heroNode)&#123;
+        //判断列表是否为空
+        if(head.next==null)&#123;
+            System.out.println(&quot;链表为空&quot;);
+            return;
+        &#125;
+        //定义一个辅助节点
+        HeroNode temp = head.next;
+        boolean flag = false;
+        while (true)&#123;
+            //是否找到对应节点
+
+            if (temp.id==heroNode.id)&#123;
+                flag = true;
+                break;
+            &#125;
+            if(temp.next==null)&#123;
+                break; //防止空指针异常
+            &#125;
+            temp = temp.next;//temp后移
+        &#125;
+        if(flag)&#123;
+            temp.name = heroNode.name;
+        &#125;else&#123;
+            System.out.println(&quot;没有找到id为&quot;+heroNode.id);
+        &#125;
+    &#125;
+    //删除节点
+    public void delLinkedList(int id)&#123;
+        HeroNode temp = head; //辅助
+        boolean flag = false;
+        //找到待删除节点的前一个节点
+        while (true)&#123;
+            if(temp.next==null)&#123;
+                break; //已经到最后需要退出循环
+            &#125;
+            if(temp.next.id ==id)&#123;
+                flag = true;
+                break;
+            &#125;
+            temp = temp.next;
+            if(flag)&#123;
+                //中间刚好空开一个.next
+                temp.next = temp.next.next;
+            &#125;else&#123;
+                System.out.println(&quot;没有找到id为&quot;+id);
+            &#125;
+        &#125;
+    &#125;
+
+&#125;
+//定义一个节点类 里面放数据
+class HeroNode&#123;
+    public int id;
+    public String name;
+    public HeroNode next; //指针 用来指向下一个节点
+
+    public HeroNode(int id, String name) &#123;
+        this.id = id;
+        this.name = name;
+    &#125;
+
+    @Override
+    public String toString() &#123;
+        return &quot;HeroNode&#123;&quot; +
+                &quot;id=&quot; + id +
+                &quot;, name=&#39;&quot; + name + &#39;\&#39;&#39; +
+                &quot;,&quot;;
+    &#125;
+&#125;
+/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹
+/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹
+/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹
+/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹
+/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹
+/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹
+/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹
+/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹
+/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹
+/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹
+/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹
+/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹
+/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹
+/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹
+/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹
+/////////////////艹 坚持一会 不搞完不睡觉 mdmdmdmmdmdmmdmmdmdmmdmdmdmm操操操操操操操操操操操操操哦啊从操操操艹
+</code></pre>
 
         <!-- 分类文章 -->
         
