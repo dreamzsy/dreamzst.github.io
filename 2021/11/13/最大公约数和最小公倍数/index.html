@@ -23,6 +23,12 @@
 
   <!-- 代码高亮 -->
   
+    
+      
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.1/styles/github.css">
+
+    
+  
 <meta name="generator" content="Hexo 6.3.0"></head>
 
 
@@ -120,11 +126,11 @@
 <p><strong>输出</strong></p>
 <p>最大公约数，最小公倍数</p>
 <p><strong>样例输入复制</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5 7</span><br></pre></td></tr></table></figure>
-
+<pre><code>5 7
+</code></pre>
 <p><strong>样例输出复制</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 35</span><br></pre></td></tr></table></figure>
-
+<pre><code>1 35
+</code></pre>
 <p><strong>思路</strong>:</p>
 <p>首先我们需要了解，最小公因数和最小公倍数的相关性质</p>
 <p>两数的乘积 &#x2F; 最大公因数 &#x3D; 最小公倍数</p>
@@ -139,8 +145,42 @@
 <p>t &#x3D; m% n</p>
 <p>m  &#x3D; n</p>
 <p>n &#x3D; t</p>
-<h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">int</span> n,m,num1,num2;</span><br><span class="line">	<span class="comment">//输入两个数</span></span><br><span class="line">	<span class="type">int</span> <span class="variable">t</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">	cin &gt;&gt; num1 &gt;&gt; num2;</span><br><span class="line">	m = num1;</span><br><span class="line">	n = num2;</span><br><span class="line">	<span class="keyword">if</span>(m&gt;n)&#123;</span><br><span class="line">		<span class="comment">//进入循环 辗转相除</span></span><br><span class="line">		<span class="keyword">while</span>(t != <span class="number">1</span>)&#123;</span><br><span class="line">			t = m % n;</span><br><span class="line">			m = n;</span><br><span class="line">			n = t;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//求最小公倍数</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> (num1*num2) / m; </span><br><span class="line">		cout &lt;&lt; m &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; b &lt;&lt;endl;</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(m &lt; n)&#123;</span><br><span class="line">		<span class="keyword">while</span>(t!=<span class="number">0</span>)&#123;</span><br><span class="line">			t = n % m;</span><br><span class="line">			n = m;</span><br><span class="line">			m = t;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> (num1*num2)/n;</span><br><span class="line">		cout &lt;&lt; n &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; b;</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(m==n)&#123;</span><br><span class="line">		<span class="comment">//直接输出最小公倍数 公约数都相同</span></span><br><span class="line">		cout &lt;&lt; n &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; n &lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h2><pre><code class="java">#include &lt;iostream&gt;
+using namespace std;
+int main()&#123;
+    int n,m,num1,num2;
+    //输入两个数
+    int t = 1;
+    cin &gt;&gt; num1 &gt;&gt; num2;
+    m = num1;
+    n = num2;
+    if(m&gt;n)&#123;
+        //进入循环 辗转相除
+        while(t != 1)&#123;
+            t = m % n;
+            m = n;
+            n = t;
+        &#125;
+        //求最小公倍数
+        int b = (num1*num2) / m; 
+        cout &lt;&lt; m &lt;&lt; &quot; &quot; &lt;&lt; b &lt;&lt;endl;
+    &#125;else if(m &lt; n)&#123;
+        while(t!=0)&#123;
+            t = n % m;
+            n = m;
+            m = t;
+        &#125;
+        int b = (num1*num2)/n;
+        cout &lt;&lt; n &lt;&lt; &quot; &quot; &lt;&lt; b;
+    &#125;else if(m==n)&#123;
+        //直接输出最小公倍数 公约数都相同
+        cout &lt;&lt; n &lt;&lt; &quot; &quot; &lt;&lt; n &lt;&lt;endl;
+    &#125;
+    
+    return 0;
 
+&#125;
+</code></pre>
 
         <!-- 分类文章 -->
         
@@ -198,6 +238,13 @@
 <script src="/js/white.js"></script>
 
 
+
+    
+      
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
 
 </body>
 </html>

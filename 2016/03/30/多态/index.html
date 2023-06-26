@@ -23,6 +23,12 @@
 
   <!-- 代码高亮 -->
   
+    
+      
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.1/styles/github.css">
+
+    
+  
 <meta name="generator" content="Hexo 6.3.0"></head>
 
 
@@ -122,18 +128,69 @@
       
 
 <h2 id="首先，使用现有技术解决。"><a href="#首先，使用现有技术解决。" class="headerlink" title="首先，使用现有技术解决。"></a><strong>首先，使用现有技术解决。</strong></h2><p>仅展示部分代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.hspedu.poly_.poly2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Master</span> &#123;</span><br><span class="line">    <span class="comment">//主人名称</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Master</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//完成主任给小狗 喂食 骨头</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">feed</span><span class="params">(Dog dog, Food food)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;主人&quot;</span> + name + <span class="string">&quot;给 &quot;</span> + dog.getName() + <span class="string">&quot;喂食&quot;</span> + food.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">package com.hspedu.poly_.poly2;
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.hspedu.poly_.poly2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Poly2</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Master</span> <span class="variable">tom</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Master</span>(<span class="string">&quot;tom&quot;</span>);</span><br><span class="line">        <span class="type">Dog</span> <span class="variable">dog</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>(<span class="string">&quot;大黄&quot;</span>);</span><br><span class="line">        <span class="type">Bone</span> <span class="variable">bone</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Bone</span>(<span class="string">&quot;大骨棒&quot;</span>);</span><br><span class="line">        tom.feed(dog,bone);</span><br><span class="line">        <span class="comment">//现在我还需要一个xxx喂猫吃鱼的方法 该如何实现呢</span></span><br><span class="line">        <span class="comment">//难道我需要再写一完成给小猫喂食的方法吗？</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+public class Master &#123;
+    //主人名称
+    private String name;
+    public Master(String name) &#123;
+        this.name = name;
+    &#125;
+    public String getName() &#123;
+        return name;
+    &#125;
+    public void setName(String name) &#123;
+        this.name = name;
+    &#125;
+    //完成主任给小狗 喂食 骨头
+    public void feed(Dog dog, Food food) &#123;
+        System.out.println(&quot;主人&quot; + name + &quot;给 &quot; + dog.getName() + &quot;喂食&quot; + food.getName());
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">package com.hspedu.poly_.poly2;
 
-<h2 id="像下面这样"><a href="#像下面这样" class="headerlink" title="像下面这样"></a><strong>像下面这样</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">feed</span><span class="params">(Cat cat,Fish fish)</span>&#123; <span class="comment">//构成方法重载</span></span><br><span class="line">    System.out.println(<span class="string">&quot;主人&quot;</span> + name + <span class="string">&quot;给 &quot;</span> + cat.getName() + <span class="string">&quot;喂食&quot;</span> + fish.getName());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法调用</span></span><br><span class="line">    <span class="type">Master</span> <span class="variable">bob</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Master</span>(<span class="string">&quot;bob&quot;</span>);</span><br><span class="line">    <span class="type">Cat</span> <span class="variable">cat</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cat</span>(<span class="string">&quot;汤姆&quot;</span>);</span><br><span class="line">    <span class="type">Fish</span> <span class="variable">fish</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Fish</span>(<span class="string">&quot;鱼&quot;</span>);</span><br><span class="line">    bob.feed(cat,fish);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+public class Poly2 &#123;
+    public static void main(String[] args) &#123;
+        Master tom = new Master(&quot;tom&quot;);
+        Dog dog = new Dog(&quot;大黄&quot;);
+        Bone bone = new Bone(&quot;大骨棒&quot;);
+        tom.feed(dog,bone);
+        //现在我还需要一个xxx喂猫吃鱼的方法 该如何实现呢
+        //难道我需要再写一完成给小猫喂食的方法吗？
+    &#125;
+&#125;
+</code></pre>
+<h2 id="像下面这样"><a href="#像下面这样" class="headerlink" title="像下面这样"></a><strong>像下面这样</strong></h2><pre><code class="java">    public void feed(Cat cat,Fish fish)&#123; //构成方法重载
+        System.out.println(&quot;主人&quot; + name + &quot;给 &quot; + cat.getName() + &quot;喂食&quot; + fish.getName());
+    &#125;
 
+    // 方法调用
+        Master bob = new Master(&quot;bob&quot;);
+        Cat cat = new Cat(&quot;汤姆&quot;);
+        Fish fish = new Fish(&quot;鱼&quot;);
+        bob.feed(cat,fish);
+</code></pre>
 <p>这样的确可以实现此需求，可当我们假设有几百个动物需要喂，难道写几百个吗？</p>
 <p>此时问题就暴露出来了：<strong>代码的复用性不高，而且不利于代码维护</strong></p>
 <h2 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a><strong>解决方案</strong>：</h2><p>​	引出多态机制：方法或者对象有多种形态。是面向对象的三大特征，多态是建立在封装和继承基础之上的。</p>
 <ul>
 <li><p><strong>方法的多态：重写和重载体现多态</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PloyMethod</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="comment">//方法重载体现多态</span></span><br><span class="line">        <span class="comment">//我们通过不同的参数去调用sum方法,就会去调用不同的方法，因此sum就是多态的体现</span></span><br><span class="line">        <span class="type">A</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">A</span>();</span><br><span class="line">        System.out.println(a.sum(<span class="number">10</span>,<span class="number">20</span>));</span><br><span class="line">        System.out.println(a.sum(<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方法重写体现多态  方法名相同，但是只调用自己类的say()方法</span></span><br><span class="line">        <span class="type">B</span> <span class="variable">b</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">B</span>();</span><br><span class="line">        a.say();</span><br><span class="line">        b.say();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">public class PloyMethod &#123;
+    public static void main(String[] args) &#123;
+    //方法重载体现多态
+        //我们通过不同的参数去调用sum方法,就会去调用不同的方法，因此sum就是多态的体现
+        A a = new A();
+        System.out.println(a.sum(10,20));
+        System.out.println(a.sum(10,20,30));
+
+        // 方法重写体现多态  方法名相同，但是只调用自己类的say()方法
+        B b = new B();
+        a.say();
+        b.say();
+    &#125;
+&#125;
+</code></pre>
 </li>
 <li><p><strong>对象的多态 (核心，困难，重点)</strong></p>
 <ul>
@@ -142,21 +199,29 @@
 <li><p>编译类型在定义对象时，就确定了，不能够改变</p>
 </li>
 <li><p>运行类型是可以变化的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//animal 编译类型 Animal 运行类型:Dog</span></span><br><span class="line">  <span class="type">Animal</span> <span class="variable">animal</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">  animal.cry();</span><br><span class="line">    </span><br><span class="line">  animal = <span class="keyword">new</span> <span class="title class_">Cat</span>();</span><br><span class="line">  animal.cry();</span><br></pre></td></tr></table></figure>
+<pre><code class="java">      //animal 编译类型 Animal 运行类型:Dog
+        Animal animal = new Dog();
+        animal.cry();
 
-
+        animal = new Cat();
+        animal.cry();
+</code></pre>
 </li>
 <li><p>编译类型看等号左边，运行类型看等号右边</p>
 </li>
 </ul>
 </li>
 </ul>
-<h2 id="此时我们再回过头来解决主人喂食问题"><a href="#此时我们再回过头来解决主人喂食问题" class="headerlink" title="此时我们再回过头来解决主人喂食问题"></a>此时我们再回过头来解决主人喂食问题</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">feed</span><span class="params">(Animal animal, Food food)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;主人&quot;</span> + name + <span class="string">&quot;在学校里给&quot;</span> + animal.getName() + <span class="string">&quot;喂食&quot;</span> + food.getName());</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="此时我们再回过头来解决主人喂食问题"><a href="#此时我们再回过头来解决主人喂食问题" class="headerlink" title="此时我们再回过头来解决主人喂食问题"></a>此时我们再回过头来解决主人喂食问题</h2><pre><code class="java">    public void feed(Animal animal, Food food) &#123;
+        System.out.println(&quot;主人&quot; + name + &quot;在学校里给&quot; + animal.getName() + &quot;喂食&quot; + food.getName());
 
+    &#125;
+</code></pre>
 <h2 id="多态注意事项和细节讨论"><a href="#多态注意事项和细节讨论" class="headerlink" title="多态注意事项和细节讨论"></a>多态注意事项和细节讨论</h2><p>多态的<strong>前提</strong>是：两个对象类存在继承关系</p>
 <p><strong>多态的向上转型：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Animal</span> <span class="variable">animal</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">animal.cry() <span class="comment">//找运行类型cry()</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">Animal animal = new Dog();
+animal.cry() //找运行类型cry()
+</code></pre>
 <p><strong>本质</strong>：父类的引用指向了子类的对象</p>
 <p><strong>语法</strong>：父类类型 引用名 &#x3D; new 子类类型();</p>
 <p><strong>特点</strong>：</p>
@@ -166,8 +231,26 @@
 <li>不能调用子类中的<strong>特有成员</strong>（即子类中特有的方法）</li>
 <li>因为编译类型是animal 所以他根本不知道子类方法是谁 所以无法调用</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">T</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">AA</span> <span class="variable">aa</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BB</span>();</span><br><span class="line">        aa.test();</span><br><span class="line">        aa.pp()  <span class="comment">// ! 这里会报错 无法调用</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AA</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;ok&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BB</span> <span class="keyword">extends</span> <span class="title class_">AA</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">pp</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;你好&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">public class T &#123;
+    public static void main(String[] args) &#123;
+        AA aa = new BB();
+        aa.test();
+        aa.pp()  // ! 这里会报错 无法调用
+    &#125;
+&#125;
 
+class AA&#123;
+    public void test()&#123;
+        System.out.println(&quot;ok&quot;);
+    &#125;
+&#125;
+
+class BB extends AA&#123;
+    public void pp()&#123;
+        System.out.println(&quot;你好&quot;);
+    &#125;
+&#125;
+</code></pre>
 <ul>
 <li>最终运行效果看子类的具体实现</li>
 </ul>
@@ -195,11 +278,39 @@
          System.out.println(&amp;quot;你好&amp;quot;);
      &#125;
  &#125;z
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 只能强转父类的引用，不能强转父类的对象</span><br><span class="line"></span><br><span class="line">- 要求父类的引用必须指向的是当前目标类型的对象</span><br><span class="line"></span><br><span class="line">- 当向下转型后可以调用子类类型中的所有成员</span><br><span class="line"></span><br><span class="line">- </span><br><span class="line">  ​	</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">   **属性不存在重写之说**</span><br><span class="line">  </span><br><span class="line">  ```java</span><br><span class="line">package com.hspedu;</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><p>只能强转父类的引用，不能强转父类的对象</p>
+</li>
+<li><p>要求父类的引用必须指向的是当前目标类型的对象</p>
+</li>
+<li><p>当向下转型后可以调用子类类型中的所有成员</p>
+</li>
+<li><p>​	</p>
+<p> <strong>属性不存在重写之说</strong></p>
+<pre><code class="java">
 </code></pre>
 </li>
 </ul>
-<p>public class PolyDetail02 {<br>      public static void main(String[] args) {<br>        &#x2F;&#x2F;属性没有重写之说，属性的值看编译类型<br>          Base base &#x3D; new Sub(); &#x2F;&#x2F;向上转型<br>          System.out.println(base.count); &#x2F;&#x2F;直接看编译类型 10<br>      }<br>  }<br>  class Base{<br>      int count &#x3D; 10;<br>  }<br>  class Sub extends Base{<br>      int count &#x3D; 20;<br>  }<br>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">instanceOf比较操作符，用于判断**运行类型**是否为XX或者XX**的子类型**</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>package com.hspedu;</p>
+<pre><code>
+public class PolyDetail02 &#123;
+    public static void main(String[] args) &#123;
+      //属性没有重写之说，属性的值看编译类型
+        Base base = new Sub(); //向上转型
+        System.out.println(base.count); //直接看编译类型 10
+    &#125;
+&#125;
+class Base&#123;
+    int count = 10;
+&#125;
+class Sub extends Base&#123;
+    int count = 20;
+&#125;
+</code></pre>
+<p>  instanceOf比较操作符，用于判断<strong>运行类型</strong>是否为XX或者XX<strong>的子类型</strong></p>
+<pre><code>
+</code></pre>
 
         <!-- 分类文章 -->
         
@@ -257,6 +368,13 @@
 <script src="/js/white.js"></script>
 
 
+
+    
+      
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
 
 </body>
 </html>
